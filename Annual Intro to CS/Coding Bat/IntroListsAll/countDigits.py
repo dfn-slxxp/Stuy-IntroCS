@@ -1,6 +1,7 @@
 def countDigits(n):
     n = abs(n)
-    if (n < 10):
-        return 1
-    else:
-        return 1 + countDigits(n // 10)
+    count = 0
+    while n > 0:
+        count += 1
+        n = n // 10
+    return count
