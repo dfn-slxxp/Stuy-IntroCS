@@ -1,4 +1,5 @@
-def findWord(str, n):
+def countWord(str, n):
+    count = 0
     for i in range(len(str) - len(n) + 1):
         ts = True
         for j in range(len(n)):
@@ -8,6 +9,6 @@ def findWord(str, n):
                 ts = False
                 break
         if ts:
-            return i
+            count += 1
         
-    return -1
+    return count
