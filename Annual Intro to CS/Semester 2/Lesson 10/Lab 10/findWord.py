@@ -1,0 +1,2 @@
+def findWord(str, n):
+    
