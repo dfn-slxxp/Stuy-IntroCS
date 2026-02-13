@@ -15,7 +15,7 @@ def swaCase(s):
     return s.swapcase()
 
 
-# Homework
+# Challenge
 
 def upperIfUpper(s):
     count = 0
