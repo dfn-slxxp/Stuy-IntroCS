@@ -31,9 +31,6 @@ def alphabeticalSentance(str):
     # Split the sentance into words that are all lowercase
     words = str.lower().split()
 
-    print(*words)
-
-
     # Initialize empty list for sorted words
     sorted_words = []
 
