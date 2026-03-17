@@ -9,7 +9,7 @@ def fib(n):
 # Homework
 
 def n_minus_two_sum(n):
-    if n == 0:
+    if n <= 0:
         return n
     return n + n_minus_two_sum(n - 2)
 
