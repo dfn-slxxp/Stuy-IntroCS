@@ -1,7 +1,7 @@
 import turtle, math, random
 
 def random_rgb():
-    return (random.randint(0, 150), random.randint(0, 150), random.randint(0, 150))
+    return (random.randint(100, 255), random.randint(100, 255), random.randint(100, 255))
 
 def draw_hex():
     t.pd()
