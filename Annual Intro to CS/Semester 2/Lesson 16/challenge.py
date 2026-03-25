@@ -1,7 +1,7 @@
 import turtle, math, random
 
 def random_rgb():
-    return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    return (random.randint(0, 150), random.randint(0, 150), random.randint(0, 150))
 
 def draw_hex():
     t.pd()
@@ -20,9 +20,6 @@ def hex_with_number(n):
     t.fd(5)
     t.rt(90)
     t.fd(15 * math.sqrt(3))
-    t.color("white")
-    t.write(n, align="center", font=("Arial", 12, "bold"))
-    t.color("black")
     t.write(n, align="center", font=("Arial", 12, "normal"))
     t.bk(15 * math.sqrt(3))
     t.lt(90)
