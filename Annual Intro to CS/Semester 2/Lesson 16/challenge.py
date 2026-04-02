@@ -4,60 +4,60 @@ def random_rgb():
     return (random.randint(100, 255), random.randint(100, 255), random.randint(100, 255))
 
 def draw_hex():
-    t.pd()
+    rose.pd()
     turtle.colormode(255)
-    t.fillcolor(random_rgb())
-    t.begin_fill()
+    rose.fillcolor(random_rgb())
+    rose.begin_fill()
     for i in range(6):
-        t.fd(30)
-        t.rt(60)
-    t.pu()
-    t.end_fill()
+        rose.fd(30)
+        rose.rt(60)
+    rose.pu()
+    rose.end_fill()
 
 def hex_with_number(n):
     draw_hex()
-    t.pu()
-    t.fd(5)
-    t.rt(90)
-    t.fd(15 * math.sqrt(3))
-    t.write(n, align="center", font=("Arial", 12, "normal"))
-    t.bk(15 * math.sqrt(3))
-    t.lt(90)
-    t.bk(5)
+    rose.pu()
+    rose.fd(5)
+    rose.rt(90)
+    rose.fd(15 * math.sqrt(3))
+    rose.write(n, align="center", font=("Arial", 12, "normal"))
+    rose.bk(15 * math.sqrt(3))
+    rose.lt(90)
+    rose.bk(5)
 
 def next_hex():
-    t.pu()
-    t.lt(60)
-    t.bk(30)
-    t.lt(60)
-    t.bk(30)
-    t.rt(120)
-    t.pd()
+    rose.pu()
+    rose.lt(60)
+    rose.bk(30)
+    rose.lt(60)
+    rose.bk(30)
+    rose.rt(120)
+    rose.pd()
 
 def next_row(num_in_row):
-    t.pu()
+    rose.pu()
     for i in range(num_in_row):
-        t.lt(120)
-        t.fd(30)
-        t.rt(60)
-        t.fd(30)
-        t.rt(60)
+        rose.lt(120)
+        rose.fd(30)
+        rose.rt(60)
+        rose.fd(30)
+        rose.rt(60)
 
-    t.rt(60)
-    t.bk(30)
-    t.lt(60)
-    t.bk(30)
-    t.pd()
+    rose.rt(60)
+    rose.bk(30)
+    rose.lt(60)
+    rose.bk(30)
+    rose.pd()
     
 
-t = turtle.Turtle()
-t.speed(0)
-t.pu()
-t.bk(15)
-t.lt(90)
-t.fd(300)
+rose = turtle.Turtle()
+rose.speed(0)
+rose.pu()
+rose.bk(15)
+rose.lt(90)
+rose.fd(300)
 
-t.pd()
+rose.pd()
 
 
 def pascals_triangle(n):
@@ -85,6 +85,6 @@ def print_pascals_triangle(rows):
             next_hex()
         next_row(len_row)
 
-print_pascals_triangle(11)
+print_pascals_triangle(876)
 
 turtle.done()
