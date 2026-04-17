@@ -3,6 +3,7 @@ import color_map
 import julia_math
 
 def color_turtle(t, i, j):
+    turtle.colormode(255)
     t.pencolor(color_map.get_color(i, j))
 
 def create_turtle_map(num_x, num_y):
@@ -28,5 +29,5 @@ def create_turtle_map(num_x, num_y):
     return turt, screen
 
 
-create_turtle_map(4, 4)
+create_turtle_map(200, 200)
 turtle.done()
