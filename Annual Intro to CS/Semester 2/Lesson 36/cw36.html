@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title>Classwork 36</title>
+
+        <style>
+
+            body {
+                background-color: rgb(174, 232, 255);
+                text-align: center;
+            }
+
+            .form_item {
+                padding: .25%;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>Purchase a shirt trust</h1>
+
+        <form method="post" action="purchase_shirt.py">
+
+            <div class="form_item">
+                <label>Fisrt Name:</label>
+                <input type="text" name="first_name"> <br>
+            </div>
+
+            <div class="form_item">
+                <label>Last Name:</label>
+                <input type="text" name="last_name"> <br>
+            </div>
+            
+            <div class="form_item">
+                <label>Type of Shirt:</label>
+                <select name="clothe">
+                    <option name="clothe" value="t-shirt">T-Shirt</option>
+                    <option name="clothe" value="long-sleeve">Long Sleeve</option>
+                    <option name="clothe" value="crew-neck">Crewneck</option>
+                    <option name="clothe" value="turtle-neck">Turtleneck</option>
+                    <option name="clothe" value="zip-up">Zip Up Hoodie</option>
+                    <option name="clothe" value="hoodie">Pullover Hoodie</option>
+                    <option name="clothe" value="quarter-zip">Quarter-Zip</option>
+                </select>
+            </div>
+
+            <div class="form_item">
+                <label>Size: </label>
+                <input type="radio" name="size" value="xs">XS
+                <input type="radio" name="size" value="s">S
+                <input type="radio" name="size" value="m">M
+                <input type="radio" name="size" value="l">L
+                <input type="radio" name="size" value="xl">XL
+            </div>
+
+            <div class="form_item">
+                <label>Color(s): </label>
+                <input type="checkbox" name="color_black" value="black">
+                    <label style="color: black">Black</label>
+                <input type="checkbox" name="color_white" value="white">
+                    <label style="color: white">White</label>
+                <input type="checkbox" name="color_blue" value="blue">
+                    <label style="color: blue">Blue</label>
+                <input type="checkbox" name="color_red" value="red">
+                    <label style="color: red">Red</label>
+                <input type="checkbox" name="color_green" value="green">
+                    <label style="color: green">Green</label>
+                <input type="checkbox" name="color_yellow" value="yellow">
+                    <label style="color: yellow">Yellow</label>
+            </div>
+
+            <div class="form_item">
+                <label>Comments: </label> <br>
+                <textarea name="comments" rows="7" cols="50" wrap="hard" placeholder="Any additional comments?"></textarea>
+            </div>
+
+            <div class="form_item">
+
+                <input type="reset">
+                <input type="submit" value="Purchase">
+
+            </div>
+
+        </form>
+
+    </body>
+
+</html>

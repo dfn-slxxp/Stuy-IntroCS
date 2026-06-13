@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>{% block title %}Minecraft Farm Directory{% endblock %}</title>
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+        <style>
+
+            * {
+                font-family: 'VT323', sans-serif;
+                font-stretch: 150%;
+                color: #ffffff;
+            }
+
+            body {
+                text-align: center;
+            }
+
+            .navbar {
+                position: sticky;
+                top: 0;
+                z-index: 40;
+                border: 5px solid #51515187;
+                font-size: 1rem;
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                padding: 0 2rem;
+                height: 72px;
+                background-color: #0000002c;
+
+                margin-bottom: 20px;
+            }
+
+            .content_wrappers {
+                border: 5px solid #51515187;
+                background-color: #0000002c;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                text-align: center;
+                padding: 2rem;
+                width: 35%;
+            }
+
+            .home-button {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .home-button h1 {
+                color: #ffffffcc;
+                font-size: 2rem;
+                font-weight: 600;
+                margin: 0;
+                transition: color .2s;
+                padding: 0.5rem;
+            }
+
+            .home-button h1:hover {
+                color:#ffffff;
+            }
+
+            .home-button img {
+                object-fit: contain;
+            }
+
+            .links a {
+                color: #ffffffcc;
+                text-decoration: none;
+                font-size: 1.5rem;
+                padding: .5rem .75rem;
+                border-radius: 4px;
+                transition: color .2s;
+            }
+
+            .links a:hover {
+                color: #ffffff;
+            }
+
+        </style>
+
+        {% block moreStyles %}
+        {% endblock %}
+
+    </head>
+
+    <body background="{% static  'Dirt.png' %}">
+
+        <div class="navbar">
+
+            <a href="/" class="home-button">
+                <img id="site_logo" src="{% static 'image.png' %}" width="48px" height="48px" alt="website logo">
+                <h1 id="site_name">Farm Discovery</h1>
+            </a>
+
+            <div class="links">
+
+                <a href="/">About</a>
+                <a href="/farms/">Farms</a>
+                <a href="/add/">Add a Farm</a>
+
+            </div>
+
+        </div>
+
+        <div class="content">
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+
+    </body>
+
+</html>

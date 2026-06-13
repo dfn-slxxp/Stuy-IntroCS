@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Add a Farm{% endblock %}
+
+{% block moreStyles %}
+
+    <style>
+
+        .wrapper {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form_item {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .form_item label, textarea {
+            line-height: 1.5rem;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .form_item label {
+            margin: .25rem;
+        }
+
+        .form_item textarea {
+            border-radius: 5px;
+        }
+
+        input, button {
+            color: black;
+        }
+
+        [name="version_selector"] {
+            padding: 1.5rem;
+        }
+
+        [name="version_selector"] option {
+            padding: 1.1rem;
+            color: black;
+        }
+
+    </style>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="wrapper">
+        <form class="content_wrappers">
+            <h1>Submit a Farm</h1>
+
+            <div class="form_item">
+                <label for="name">Farm Name</label>
+                <input type="text" rows="1" id="name" placeholder="Farm Name">
+            </div>
+
+            <div class="form_item">
+                <label for="author">Farm Author</label>
+                <input type="text" rows="1" id="author" placeholder="Farm Author">
+            </div>
+
+            <div class="form_item">
+                <label for="minecraft_version">Supported Minecaft Version(s)</label>
+                <input type="text" rows="1" id="minecraft_version" placeholder="Supported Version(s)">
+            </div>
+
+            <div class="form_item" name="categories" method="post">
+                {% csrf_token %}
+                <label for="categories">Farm Categories</label>
+                <div name="version_select" id="game_version">
+
+                    <div>
+                        <input type="checkbox" id="Overworld_Mobs" name="Overworld_Mobs">
+                        <label for="Overworld_Mobs">Overworld Mobs</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="Nether_Mobs" name="Nether_Mobs">
+                        <label for="Nether_Mobs">Nether Mobs</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="End_Mobs" name="End_Mobs">
+                        <label for="End_Mobs">End Mobs</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="Blocks" name="Blocks">
+                        <label for="Blocks">Blocks</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="Other_Items" name="Other_Items">
+                        <label for="Other_Items">Other Items</label>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="form_item">
+                <label for="submit_button">Submit</label>
+                <button type="submit" id="submit_button">Submit Farm</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
