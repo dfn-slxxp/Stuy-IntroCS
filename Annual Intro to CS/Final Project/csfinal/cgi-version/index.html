@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Minecraft Farm Discovery</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'VT323', sans-serif;
+            font-stretch: 150%;
+            color: #ffffff;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            border: 5px solid #51515187;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            height: 72px;
+            background-color: #0000002c;
+            margin-bottom: 20px;
+        }
+
+        .home-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .home-button h1 {
+            color: #ffffffcc;
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 0;
+            transition: color .2s;
+            padding: 0.5rem;
+        }
+
+        .home-button h1:hover {
+            color: #ffffff;
+        }
+
+        .home-button img {
+            object-fit: contain;
+        }
+
+        .links a {
+            color: #ffffffcc;
+            text-decoration: none;
+            font-size: 1.5rem;
+            padding: .5rem .75rem;
+            border-radius: 4px;
+            transition: color .2s;
+        }
+
+        .links a:hover {
+            color: #ffffff;
+        }
+
+        .content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .home-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .home-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 4rem 2rem 3rem;
+            border-bottom: 2px solid #51515187;
+            align-items: center;
+        }
+
+        .home-hero h1 {
+            font-size: 4.5rem;
+            line-height: 1;
+            margin: 0 0 1rem;
+        }
+
+        .home-hero p {
+            font-size: 1.4rem;
+            color: #ccc;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .home-card {
+            background: #0000004a;
+            border: 2px solid #51515187;
+            border-radius: 5px;
+            padding: 2rem;
+        }
+
+        .home-card h2 {
+            font-size: 3rem;
+            margin: 0 0 0.75rem;
+        }
+
+        .home-card p {
+            font-size: 1.3rem;
+            color: #ccc;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .home-categories {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+            padding: 2rem;
+        }
+
+        .home-category {
+            background: #0000004a;
+            border: 2px solid #51515187;
+            border-radius: 5px;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .home-cta {
+            padding: 0 2rem 2rem;
+            display: grid;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .home-btn {
+            background: #0000004a;
+            border: 2px solid #51515187;
+            border-radius: 5px;
+            padding: 0.75rem 2rem;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .home-btn.primary {
+            border-color: #ffffff88;
+        }
+
+        .home-btn:hover {
+            background: #ffffff18;
+        }
+
+        .quiz-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            border-top: 2px solid #51515187;
+            border-bottom: 2px solid #51515187;
+        }
+
+        .quiz-banner p {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body background="/~swaldman80/static/Dirt.png">
+    <div class="navbar">
+        <a href="/~swaldman80/index.html" class="home-button">
+            <img src="/~swaldman80/static/image.png" width="48px" height="48px" alt="website logo">
+            <h1>Farm Discovery</h1>
+        </a>
+        <div class="links">
+            <a href="/~swaldman80/index.html">About</a>
+            <a href="/~swaldman80/quiz.py">Play the Quiz</a>
+            <a href="/~swaldman80/farms.py">Farms</a>
+            <a href="/~swaldman80/add.py">Add a Farm</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="home-container">
+            <div class="home-hero">
+                <div>
+                    <h1>Minecraft<br>Farm<br>Directory</h1>
+                    <p>Minecraft is a sandbox game known for its creative freedom — no set objective, no right way to play. Over the years, the community has built incredibly complex farms that automate almost everything in the game.</p>
+                </div>
+                <div class="home-card">
+                    <h2>Find Your Farm</h2>
+                    <p>Whether you need a simple mob farm to get started or a fully optimized gold farm running at thousands of items per hour, this site has something for every playstyle and version.</p>
+                </div>
+            </div>
+            <div class="home-categories">
+                <a href="/~swaldman80/farms.py?category=Overworld_Mobs" class="home-category">Overworld Mobs</a>
+                <a href="/~swaldman80/farms.py?category=Nether_Mobs" class="home-category">Nether Mobs</a>
+                <a href="/~swaldman80/farms.py?category=End_Mobs" class="home-category">End Mobs</a>
+                <a href="/~swaldman80/farms.py?category=Blocks" class="home-category">Blocks</a>
+                <a href="/~swaldman80/farms.py?category=Other_Items" class="home-category">Other Items</a>
+            </div>
+            <div class="home-cta">
+                <a href="/~swaldman80/farms.py" class="home-btn primary">Browse All Farms</a>
+                <a href="/~swaldman80/add.py" class="home-btn">Submit a Farm</a>
+            </div>
+            <div class="quiz-banner">
+                <p>Think you're a true Minecraft fan?</p>
+                <a href="/~swaldman80/quiz.py" class="home-btn primary">Play the Quiz</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,25 +1,56 @@
 {% extends "cgi_base.html" %}
 
-{% block title %}MoSim Mods{% endblock %}
+{% block title %}MC Farms{% endblock %}
 
 {% block moreStyles %}
 
     <style>
 
-        .welcome {
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .left {
-            text-align: center;
-        }
-
-        .mod {
-            border: 5px gray solid;
+        .show-all {
+            background: #0000002a;
+            border: 1px solid #51515187;
             border-radius: 5px;
+            padding: 0.75rem 1rem;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .categories {
+            background: #0000004a;
+            border: 2px solid #51515187;
+            border-radius: 5px;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .selected_category {
+            background: #b4b4b44a;
+            border: 2px solid #51515187;
+            border-radius: 5px;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .home-categories {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+            padding: 2rem;
+        }
+
+        .link_button {
+            display: inline-block;
+            background-color: #3a3a3a11;
+            border: 2px solid #ffffff2c;
+            border-radius: 4px;
+            padding: 0.3rem 0.7rem;
+            font-size: 1rem;
+            margin: 0.2rem;
         }
 
     </style>
@@ -27,11 +58,5 @@
 {% endblock %}
 
 {% block content %}
-
-
-    <table>
-        
-    </table>
-
 
 {% endblock %}

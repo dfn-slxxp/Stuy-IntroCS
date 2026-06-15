@@ -1,20 +1,108 @@
 {% extends "base.html" %}
 
-{% block title %}MoSim Mod Discovery{% endblock %}
+{% block title %}Minecraft Farm Discovery{% endblock %}
 
 {% block moreStyles %}
 
     <style>
 
-        .welcome {
-            color: white;
+        .home-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .home-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 4rem 2rem 3rem;
+            border-bottom: 2px solid #51515187;
+            align-items: center;
+        }
+
+        .home-hero h1 {
+            font-size: 4.5rem;
+            line-height: 1;
+            margin: 0 0 1rem;
+        }
+
+        .home-hero p {
+            font-size: 1.4rem;
+            color: #ccc;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .home-card {
+            background: #0000004a;
+            border: 2px solid #51515187;
+            border-radius: 5px;
+            padding: 2rem;
+        }
+
+        .home-card h2 {
+            font-size: 3rem;
+            margin: 0 0 0.75rem;
+        }
+
+        .home-card p {
+            font-size: 1.3rem;
+            color: #ccc;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .home-categories {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+            padding: 2rem;
+        }
+
+        .home-category {
+            background: #0000004a;
+            border: 2px solid #51515187;
+            border-radius: 5px;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .home-cta {
+            padding: 0 2rem 2rem;
+            display: grid;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .home-btn {
+            background: #0000004a;
+            border: 2px solid #51515187;
+            border-radius: 5px;
+            padding: 0.75rem 2rem;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .home-btn.primary {
+            border-color: #ffffff88;
+        }
+
+        .quiz-banner {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 1.5rem 2rem;
+            border-top: 2px solid #51515187;
+            border-bottom: 2px solid #51515187;
         }
 
-        .left {
-            text-align: center;
+        .quiz-banner p {
+            font-size: 1.5rem;
+            margin: 0;
         }
 
     </style>
@@ -23,18 +111,35 @@
 
 {% block content %}
 
-    <div class="welcome">
+    <div class="home-container">
 
-        <div class="left">
-
-            <h1 class="welcome">MoSim Modding</h1>
-
+        <div class="home-hero">
+            <div>
+                <h1>Minecraft<br>Farm<br>Directory</h1>
+                <p>Minecraft is a sandbox game known for its creative freedom — no set objective, no right way to play. Over the years, the community has built incredibly complex farms that automate almost everything in the game.</p>
+            </div>
+            <div class="home-card">
+                <h2>Find Your Farm</h2>
+                <p>Whether you need a simple mob farm to get started or a fully optimized gold farm running at thousands of items per hour, this site has something for every playstyle and version.</p>
+            </div>
         </div>
 
-        <div class="right">
+        <div class="home-categories">
+            <a href="/farms/?category=Overworld_Mobs" class="home-category">Overworld Mobs</a>
+            <a href="/farms/?category=Nether_Mobs" class="home-category">Nether Mobs</a>
+            <a href="/farms/?category=End_Mobs" class="home-category">End Mobs</a>
+            <a href="/farms/?category=Blocks" class="home-category">Blocks</a>
+            <a href="/farms/?category=Other_Items" class="home-category">Other Items</a>
+        </div>
 
+        <div class="home-cta">
+            <a href="/farms/" class="home-btn primary">Browse All Farms</a>
+            <a href="/add/" class="home-btn">Submit a Farm</a>
+        </div>
 
-
+        <div class="quiz-banner">
+            <p>Think you're a true Minecraft fan?</p>
+            <a href="/quiz/" class="home-btn primary">Play the Quiz</a>
         </div>
 
     </div>

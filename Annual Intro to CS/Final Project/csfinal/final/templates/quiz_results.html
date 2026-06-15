@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz Results{% endblock %}
+
+{% block moreStyles %}
+<style>
+
+    .question {
+        background: #0000004a;
+        border: 2px solid #51515187;
+        border-radius: 5px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+
+    .question p {
+        font-size: 1.3rem;
+        margin: 0 0 0.75rem;
+    }
+
+    .opt {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0.3rem 0;
+        font-size: 1.2rem;
+        color: #ccc;
+    }
+
+    .correct-q { border-color: #4caf50 !important; }
+    .wrong-q   { border-color: #f44336 !important; }
+
+    .correct-ans { color: #4caf50; font-weight: bold; }
+    .wrong-ans   { color: #f44336; text-decoration: line-through; }
+
+    .result {
+        background: #0000004a;
+        border: 2px solid #51515187;
+        border-radius: 5px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .result .score { font-size: 3rem; }
+    .result .msg   { font-size: 1.3rem; color: #ccc; }
+
+    .wrapper {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-btn {
+        background: #0000004a;
+        border: 2px solid #ffffff88;
+        border-radius: 5px;
+        padding: 0.75rem 2rem;
+        font-family: 'VT323', monospace;
+        font-size: 1.5rem;
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .back-btn:hover { background: #ffffff18; }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="wrapper">
+        <div class="content_wrappers">
+
+            <div class="result">
+                <div class="score">{{ score }} / {{ total }}</div>
+                <div class="msg">{{ msg }}</div>
+            </div>
+
+            {% for q in questions %}
+            <div class="question {% if q.correct %}correct-q{% else %}wrong-q{% endif %}">
+                <p>{{ forloop.counter }}. {{ q.text }}</p>
+                {% for opt in q.options %}
+                    <div class="opt">
+                        {% if opt == q.correct_answer %}
+                            <span class="correct-ans">&#10003; {{ opt }}</span>
+                        {% elif opt == q.user_answer %}
+                            <span class="wrong-ans">&#10007; {{ opt }}</span>
+                        {% else %}
+                            <span>{{ opt }}</span>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <a href="/quiz/" class="back-btn">Try Again</a>
+
+        </div>
+    </div>
+
+{% endblock %}

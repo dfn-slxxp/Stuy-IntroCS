@@ -84,6 +84,28 @@
                 color: #ffffff;
             }
 
+            .content {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .category_badge {
+                display: inline-block;
+                background-color: #51515187;
+                border: 2px solid #ffffff44;
+                border-radius: 4px;
+                padding: 0.1rem 0.5rem;
+                font-size: 1rem;
+                margin: 0.2rem;
+            }
+
+            .content_wrappers table {
+                margin: 0 auto;
+            }
+
         </style>
 
         {% block moreStyles %}
@@ -103,6 +125,7 @@
             <div class="links">
 
                 <a href="/">About</a>
+                <a href="/quiz/">Play the Quiz</a>
                 <a href="/farms/">Farms</a>
                 <a href="/add/">Add a Farm</a>
 
@@ -112,7 +135,26 @@
 
         <div class="content">
 
+            <!--
+            <div class="content_wrappers">
+                <table>
+                    <tr><td>Name</td></tr>
+                    <tr><td>By: Author Name</td></tr>
+                    <tr><td>Supports Version(s): 1.12+</td></tr>
+                    <tr>
+                        <td>
+                            <span class="category_badge">Overworld Mobs</span>
+                            <span class="category_badge">Blocks</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{% static 'tree.png' %}" width="50%">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            -->
+
             {% block content %}
             {% endblock %}
-
-        </div>

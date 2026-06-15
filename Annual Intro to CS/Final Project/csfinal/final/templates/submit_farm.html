@@ -45,6 +45,27 @@
             color: black;
         }
 
+        h1 {
+            font-size: 350%;
+        }
+
+        label, input {
+            font-size: 150%;
+        }
+
+        .category_option {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin: 0.25rem 0.5rem;
+        }
+
+        #game_version {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
     </style>
 
 {% endblock %}
@@ -52,55 +73,70 @@
 {% block content %}
 
     <div class="wrapper">
-        <form class="content_wrappers">
+        <form class="content_wrappers" method="post">
+            {% csrf_token %}
             <h1>Submit a Farm</h1>
 
             <div class="form_item">
                 <label for="name">Farm Name</label>
-                <input type="text" rows="1" id="name" placeholder="Farm Name">
+                <input type="text" rows="1" id="name" name="name" placeholder="Farm Name" required>
             </div>
 
             <div class="form_item">
                 <label for="author">Farm Author</label>
-                <input type="text" rows="1" id="author" placeholder="Farm Author">
+                <input type="text" rows="1" id="author" name="author" placeholder="Farm Author" required>
             </div>
 
             <div class="form_item">
                 <label for="minecraft_version">Supported Minecaft Version(s)</label>
-                <input type="text" rows="1" id="minecraft_version" placeholder="Supported Version(s)">
+                <input type="text" rows="1" id="minecraft_version" name="minecraft_version" placeholder="Supported Version(s)" required>
             </div>
 
-            <div class="form_item" name="categories" method="post">
-                {% csrf_token %}
-                <label for="categories">Farm Categories</label>
-                <div name="version_select" id="game_version">
+            <div class="form_item">
+                <label for="farm_description">Description</label>
+                <input type="text" rows="5" id="farm_description" name="farm_description" placeholder="Farm Description" required>
+            </div>
 
-                    <div>
-                        <input type="checkbox" id="Overworld_Mobs" name="Overworld_Mobs">
+            <div class="form_item" name="categories">
+                    <label for="categories" style="display: block; margin-bottom: 0.5rem;">Farm Categories</label>
+                    <div name="version_select" id="game_version">
+
+                    <div class="category_option">
+                        <input type="checkbox" id="Overworld_Mobs" value="Overworld_Mobs" name="categories">
                         <label for="Overworld_Mobs">Overworld Mobs</label>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="Nether_Mobs" name="Nether_Mobs">
+                    <div class="category_option">
+                        <input type="checkbox" id="Nether_Mobs" value="Nether_Mobs" name="categories">
                         <label for="Nether_Mobs">Nether Mobs</label>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="End_Mobs" name="End_Mobs">
+                    <div class="category_option">
+                        <input type="checkbox" id="End_Mobs" value="End_Mobs" name="categories">
                         <label for="End_Mobs">End Mobs</label>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="Blocks" name="Blocks">
+                    <div class="category_option">
+                        <input type="checkbox" id="Blocks" value="Blocks" name="categories">
                         <label for="Blocks">Blocks</label>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="Other_Items" name="Other_Items">
+                    <div class="category_option">
+                        <input type="checkbox" id="Other_Items" value="Other_Items" name="categories">
                         <label for="Other_Items">Other Items</label>
                     </div>
 
                 </div>
+            </div>
+
+            <div class="form_item">
+                <label for="video_url">URL Video</label>
+                <input type="text" id="video_url" name="video_url" rows="1" placeholder="Video URL">
+            </div>
+
+            <div class="form_item">
+                <label for="image_url">URL to PNG Image</label>
+                <input type="text" id="img_url" name="img_url" rows="1" placeholder="Image URL">
             </div>
             
             <div class="form_item">

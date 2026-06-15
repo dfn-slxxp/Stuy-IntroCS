@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .farms import renderFarms, newFarm
+from .quiz import render_quiz
 
 # Create your views here.
 def home(request):
@@ -10,3 +11,6 @@ def submit(request):
 
 def farms(request):
     return renderFarms(request)
+
+def quiz(request):
+    return render_quiz(request)

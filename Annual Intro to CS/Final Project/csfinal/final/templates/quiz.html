@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}Minecraft Quiz{% endblock %}
+
+{% block moreStyles %}
+<style>
+
+    .question {
+        background: #0000004a;
+        border: 2px solid #51515187;
+        border-radius: 5px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+
+    .question p {
+        font-size: 1.3rem;
+        margin: 0 0 0.75rem;
+    }
+
+    .opt {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0.3rem 0;
+        font-size: 1.2rem;
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    .opt:hover { color: #fff; }
+
+    .opt input {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+
+    .submit-btn {
+        background: #0000004a;
+        border: 2px solid #ffffff88;
+        border-radius: 5px;
+        padding: 0.75rem 2rem;
+        font-family: 'VT323', monospace;
+        font-size: 1.5rem;
+        color: #fff;
+        cursor: pointer;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .submit-btn:hover { background: #ffffff18; }
+
+    .correct { border-color: #4caf50 !important; }
+    .wrong   { border-color: #f44336 !important; }
+
+    .result {
+        background: #0000004a;
+        border: 2px solid #51515187;
+        border-radius: 5px;
+        padding: 1.5rem;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .result .score { font-size: 3rem; }
+    .result .msg   { font-size: 1.3rem; color: #ccc; }
+
+    .wrapper {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="wrapper">
+        <form class="content_wrappers" method="post">
+            {% csrf_token %}
+            <h1>Think you're a true Minecraft fan? Take on this quiz to find out.</h1>
+
+            <div class="question" id="q1">
+                <p>1. In what year was Minecraft first released?</p>
+                <label class="opt"><input type="radio" name="q1" value="2007"> 2007</label>
+                <label class="opt"><input type="radio" name="q1" value="2009"> 2009</label>
+                <label class="opt"><input type="radio" name="q1" value="2011"> 2011</label>
+                <label class="opt"><input type="radio" name="q1" value="2013"> 2013</label>
+            </div>
+
+            <div class="question" id="q2">
+                <p>2. What programming language is Minecraft (Java Edition) written in?</p>
+                <label class="opt"><input type="radio" name="q2" value="Python"> Python</label>
+                <label class="opt"><input type="radio" name="q2" value="C++"> C++</label>
+                <label class="opt"><input type="radio" name="q2" value="Java"> Java</label>
+                <label class="opt"><input type="radio" name="q2" value="Netlogo"> Netlogo</label>
+            </div>
+
+            <div class="question" id="q3">
+                <p>3. Which of these is NOT a dimension in Minecraft?</p>
+                <label class="opt"><input type="radio" name="q3" value="The Overworld"> The Overworld</label>
+                <label class="opt"><input type="radio" name="q3" value="The Nether"> The Nether</label>
+                <label class="opt"><input type="radio" name="q3" value="The Aether"> The Aether</label>
+                <label class="opt"><input type="radio" name="q3" value="The End"> The End</label>
+            </div>
+
+            <div class="question" id="q4">
+                <p>4. What is the name of Minecraft's 'final' boss?</p>
+                <label class="opt"><input type="radio" name="q4" value="The Wither"> The Wither</label>
+                <label class="opt"><input type="radio" name="q4" value="The Elder Guardian"> The Elder Guardian</label>
+                <label class="opt"><input type="radio" name="q4" value="The Ender Dragon"> The Ender Dragon</label>
+                <label class="opt"><input type="radio" name="q4" value="The Ravager"> The Ravager</label>
+            </div>
+
+            <div class="question" id="q5">
+                <p>5. What material do you need to craft a Nether portal?</p>
+                <label class="opt"><input type="radio" name="q5" value="Obsidian"> Obsidian</label>
+                <label class="opt"><input type="radio" name="q5" value="Crying Obsidian"> Crying Obsidian</label>
+                <label class="opt"><input type="radio" name="q5" value="Blackstone"> Blackstone</label>
+                <label class="opt"><input type="radio" name="q5" value="Bedrock"> Bedrock</label>
+            </div>
+
+            <div class="question" id="q6">
+                <p>6. Who created Minecraft?</p>
+                <label class="opt"><input type="radio" name="q6" value="Jeb_"> Jeb_</label>
+                <label class="opt"><input type="radio" name="q6" value="Notch"> Notch</label>
+                <label class="opt"><input type="radio" name="q6" value="Dinnerbone"> Dinnerbone</label>
+                <label class="opt"><input type="radio" name="q6" value="Dream"> Dream</label>
+            </div>
+
+            <div class="question" id="q7">
+                <p>7. Which item is required to activate an End Portal?</p>
+                <label class="opt"><input type="radio" name="q7" value="Ender Pearls"> Ender Pearls</label>
+                <label class="opt"><input type="radio" name="q7" value="Eyes of Ender"> Eyes of Ender</label>
+                <label class="opt"><input type="radio" name="q7" value="Blaze Rods"> Blaze Rods</label>
+                <label class="opt"><input type="radio" name="q7" value="Obsidian"> Obsidian</label>
+            </div>
+
+            <button type="submit" class="submit-btn"">Submit</button>
+
+        </form>
+    </div>
+
+{% endblock %}
