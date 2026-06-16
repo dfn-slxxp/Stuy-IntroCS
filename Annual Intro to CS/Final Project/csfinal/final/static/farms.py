@@ -7,24 +7,8 @@ STATIC = f"{BASE}/static"
 FARM_FILE = os.path.expanduser("farms_db.csv")
 ALLOWED_CATEGORIES = {"Overworld_Mobs", "Nether_Mobs", "End_Mobs", "Blocks", "Other_Items"}
 
-FOOTER = """
-    <footer style="
-        margin-top: auto;
-        padding: 2rem;
-        border-top: 2px solid #51515187;
-        background-color: #0000002c;
-        font-family: 'VT323', monospace;
-        font-size: 1.1rem;
-        color: #aaa;
-        text-align: center;
-        width: 100%;
-    ">
-        <p style="margin: 0.25rem 0;">&copy; Sebastian Waldman</p>
-        <p style="margin: 0.25rem 0;">Stuyvesant Computer Science Department</p>
-        <p style="margin: 0.25rem 0;">345 Chambers Street, New York, NY 10282</p>
-        <p style="margin: 0.25rem 0;">Phone: (212) 312-4800 &nbsp;|&nbsp; Fax: (212) 587-3874</p>
-    </footer>
-"""
+form = cgi.FieldStorage()
+category = form.getvalue("category", "")
 
 def page_head():
     return f"""<!DOCTYPE html>
@@ -42,9 +26,6 @@ def page_head():
 
         body {{
             text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }}
 
         .navbar {{
@@ -112,7 +93,6 @@ def page_head():
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            flex: 1;
         }}
 
         .category_badge {{
@@ -180,12 +160,12 @@ def page_head():
 </head>
 <body background="{STATIC}/Dirt.png">
     <div class="navbar">
-        <a href="{BASE}/index.html" class="home-button">
+        <a href="{BASE}/" class="home-button">
             <img src="{STATIC}/image.png" width="48px" height="48px" alt="website logo">
             <h1>Farm Discovery</h1>
         </a>
         <div class="links">
-            <a href="{BASE}/index.html">About</a>
+            <a href="{BASE}/">About</a>
             <a href="{BASE}/quiz.py">Play the Quiz</a>
             <a href="{BASE}/farms.py">Farms</a>
             <a href="{BASE}/add.py">Add a Farm</a>
@@ -236,35 +216,24 @@ def farm_html(name, author, versions, desc, cats, vid, img):
         </div>
 """
 
-def main():
-    form = cgi.FieldStorage()
-    category = form.getvalue("category", "")
+print("Content-Type: text/html\n")
+print(page_head())
+print(get_categories(category))
 
-    print(page_head())
-    print(get_categories(category))
+if category:
+    print(f'        <a href="{BASE}/farms.py" class="show-all">Show All Farms</a>')
 
-    if category:
-        print(f'        <a href="{BASE}/farms.py" class="show-all">Show All Farms</a>')
+try:
+    with open(FARM_FILE, "r", newline="", encoding="utf-8") as f:
+        farms = sorted(csv.reader(f), key=lambda row: row[0].lower())
+    for farm in farms:
+        if len(farm) < 6:
+            continue
+        if category and category not in farm[4].split("|"):
+            continue
+        img = farm[6] if len(farm) > 6 else ""
+        print(farm_html(farm[0], farm[1], farm[2], farm[3], farm[4].split("|"), farm[5], img))
+except FileNotFoundError:
+    print("        <p>No farms yet.</p>")
 
-    try:
-        with open(FARM_FILE, "r", newline="", encoding="utf-8") as f:
-            farms = sorted(csv.reader(f), key=lambda row: row[0].lower())
-        for farm in farms:
-            if len(farm) < 6:
-                continue
-            if category and category not in farm[4].split("|"):
-                continue
-            img = farm[6] if len(farm) > 6 else ""
-            print(farm_html(farm[0], farm[1], farm[2], farm[3], farm[4].split("|"), farm[5], img))
-    except FileNotFoundError:
-        print("        <p>No farms yet.</p>")
-
-    print(FOOTER)
-    print("    </div>\n</body>\n</html>")
-
-if __name__ == '__main__':
-    print("Content-type:text/html\r\n\r\n")
-    try:
-        main()
-    except:
-        cgi.print_exception()
+print("    </div>\n</body>\n</html>")

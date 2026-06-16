@@ -7,25 +7,6 @@ STATIC = f"{BASE}/static"
 FARM_FILE = os.path.expanduser("farms_db.csv")
 ALLOWED_CATEGORIES = {"Overworld_Mobs", "Nether_Mobs", "End_Mobs", "Blocks", "Other_Items"}
 
-FOOTER = """
-    <footer style="
-        margin-top: auto;
-        padding: 2rem;
-        border-top: 2px solid #51515187;
-        background-color: #0000002c;
-        font-family: 'VT323', monospace;
-        font-size: 1.1rem;
-        color: #aaa;
-        text-align: center;
-        width: 100%;
-    ">
-        <p style="margin: 0.25rem 0;">&copy; Sebastian Waldman</p>
-        <p style="margin: 0.25rem 0;">Stuyvesant Computer Science Department</p>
-        <p style="margin: 0.25rem 0;">345 Chambers Street, New York, NY 10282</p>
-        <p style="margin: 0.25rem 0;">Phone: (212) 312-4800 &nbsp;|&nbsp; Fax: (212) 587-3874</p>
-    </footer>
-"""
-
 def page_html():
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -42,9 +23,6 @@ def page_html():
 
         body {{
             text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }}
 
         .navbar {{
@@ -68,7 +46,7 @@ def page_html():
             margin-bottom: 20px;
             text-align: center;
             padding: 2rem;
-            width: 60%;
+            width: 35%;
         }}
 
         .home-button {{
@@ -223,7 +201,6 @@ def page_html():
             </div>
         </form>
     </div>
-    {FOOTER}
 </body>
 </html>"""
 

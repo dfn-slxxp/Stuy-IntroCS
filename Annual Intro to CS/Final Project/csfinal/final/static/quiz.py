@@ -27,24 +27,7 @@ QUESTIONS = [
 
 MSGS = ['Better luck next time!', 'Not bad — keep playing!', 'Pretty good!', 'Pretty good!', 'Nice work!', 'Almost perfect!', 'You know your stuff!', 'Perfect score!']
 
-FOOTER = """
-    <footer style="
-        margin-top: auto;
-        padding: 2rem;
-        border-top: 2px solid #51515187;
-        background-color: #0000002c;
-        font-family: 'VT323', monospace;
-        font-size: 1.1rem;
-        color: #aaa;
-        text-align: center;
-        width: 100%;
-    ">
-        <p style="margin: 0.25rem 0;">&copy; Sebastian Waldman</p>
-        <p style="margin: 0.25rem 0;">Stuyvesant Computer Science Department</p>
-        <p style="margin: 0.25rem 0;">345 Chambers Street, New York, NY 10282</p>
-        <p style="margin: 0.25rem 0;">Phone: (212) 312-4800 &nbsp;|&nbsp; Fax: (212) 587-3874</p>
-    </footer>
-"""
+form = cgi.FieldStorage()
 
 def page_head():
     return f"""<!DOCTYPE html>
@@ -62,9 +45,6 @@ def page_head():
 
         body {{
             text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }}
 
         .navbar {{
@@ -88,7 +68,7 @@ def page_head():
             margin-bottom: 20px;
             text-align: center;
             padding: 2rem;
-            width: 60%;
+            width: 35%;
         }}
 
         .home-button {{
@@ -127,7 +107,13 @@ def page_head():
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            flex: 1;
+        }}
+
+        .wrapper {{
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }}
 
         .question {{
@@ -252,65 +238,55 @@ def page_head():
     <div class="content">
 """
 
-def main():
-    form = cgi.FieldStorage()
+print("Content-Type: text/html\n")
+print(page_head())
 
-    print(page_head())
+if os.environ.get("REQUEST_METHOD") == "POST":
+    score = 0
+    results = []
+    for q in QUESTIONS:
+        user_ans = form.getvalue(q['key'], '')
+        correct_ans = ANSWERS[q['key']]
+        is_correct = user_ans == correct_ans
+        if is_correct:
+            score += 1
+        results.append((q, user_ans, correct_ans, is_correct))
 
-    if os.environ.get("REQUEST_METHOD") == "POST":
-        score = 0
-        results = []
-        for q in QUESTIONS:
-            user_ans = form.getvalue(q['key'], '')
-            correct_ans = ANSWERS[q['key']]
-            is_correct = user_ans == correct_ans
-            if is_correct:
-                score += 1
-            results.append((q, user_ans, correct_ans, is_correct))
-
-        print(f"""
+    print(f"""
             <div class="content_wrappers">
                 <div class="result">
                     <div class="score">{score} / {len(QUESTIONS)}</div>
                     <div class="msg">{MSGS[score]}</div>
                 </div>
 """)
-        for i, (q, user_ans, correct_ans, is_correct) in enumerate(results):
-            cls = "correct-q" if is_correct else "wrong-q"
-            print(f'                <div class="question {cls}">')
-            print(f'                    <p>{i+1}. {q["text"]}</p>')
-            for opt in q['options']:
-                if opt == correct_ans:
-                    print(f'                    <div class="opt"><span class="correct-ans">&#10003; {opt}</span></div>')
-                elif opt == user_ans:
-                    print(f'                    <div class="opt"><span class="wrong-ans">&#10007; {opt}</span></div>')
-                else:
-                    print(f'                    <div class="opt"><span>{opt}</span></div>')
-            print('                </div>')
+    for i, (q, user_ans, correct_ans, is_correct) in enumerate(results):
+        cls = "correct-q" if is_correct else "wrong-q"
+        print(f'                <div class="question {cls}">')
+        print(f'                    <p>{i+1}. {q["text"]}</p>')
+        for opt in q['options']:
+            if opt == correct_ans:
+                print(f'                    <div class="opt"><span class="correct-ans">&#10003; {opt}</span></div>')
+            elif opt == user_ans:
+                print(f'                    <div class="opt"><span class="wrong-ans">&#10007; {opt}</span></div>')
+            else:
+                print(f'                    <div class="opt"><span>{opt}</span></div>')
+        print('                </div>')
 
-        print(f'                <a href="{BASE}/quiz.py" class="back-btn">Try Again</a>')
-        print('            </div>')
+    print(f'                <a href="{BASE}/quiz.py" class="back-btn">Try Again</a>')
+    print('            </div>')
 
-    else:
-        print(f'            <form class="content_wrappers" method="post" action="{BASE}/quiz.py">')
-        print("                <h1>Think you're a true Minecraft fan? Take on this quiz to find out.</h1>")
+else:
+    print(f'            <form class="content_wrappers" method="post" action="{BASE}/quiz.py">')
+    print("                <h1>Think you're a true Minecraft fan? Take on this quiz to find out.</h1>")
 
-        for i, q in enumerate(QUESTIONS):
-            print(f'                <div class="question">')
-            print(f'                    <p>{i+1}. {q["text"]}</p>')
-            for opt in q['options']:
-                print(f'                    <label class="opt"><input type="radio" name="{q["key"]}" value="{opt}"> {opt}</label>')
-            print('                </div>')
+    for i, q in enumerate(QUESTIONS):
+        print(f'                <div class="question">')
+        print(f'                    <p>{i+1}. {q["text"]}</p>')
+        for opt in q['options']:
+            print(f'                    <label class="opt"><input type="radio" name="{q["key"]}" value="{opt}"> {opt}</label>')
+        print('                </div>')
 
-        print('                <button type="submit" class="submit-btn">Submit</button>')
-        print('            </form>')
+    print('                <button type="submit" class="submit-btn">Submit</button>')
+    print('            </form>')
 
-    print(FOOTER)
-    print('    </div>\n</body>\n</html>')
-
-if __name__ == '__main__':
-    print("Content-type:text/html\r\n\r\n")
-    try:
-        main()
-    except:
-        cgi.print_exception()
+print('        </div>\n</body>\n</html>')
